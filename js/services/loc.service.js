@@ -98,7 +98,7 @@ function getLocCountByRateMap() {
             return locCountByRateMap
         })
 }
-
+// test
 function setSortBy(sortBy = {}) {
     gSortBy = sortBy
 }
