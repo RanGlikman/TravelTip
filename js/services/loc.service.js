@@ -39,8 +39,12 @@ function query() {
 
             if (gFilterBy.txt) {
                 const regex = new RegExp(gFilterBy.txt, 'i')
-                locs = locs.filter(loc => regex.test(loc.name))
+                locs = locs.filter(loc => regex.test(loc.name) || regex.test(loc.geo.address))
             }
+
+
+
+
             if (gFilterBy.minRate) {
                 locs = locs.filter(loc => loc.rate >= gFilterBy.minRate)
             }
@@ -98,7 +102,7 @@ function getLocCountByRateMap() {
             return locCountByRateMap
         })
 }
-// test
+
 function setSortBy(sortBy = {}) {
     gSortBy = sortBy
 }
