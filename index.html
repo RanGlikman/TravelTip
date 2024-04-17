@@ -71,6 +71,18 @@
                 </section>
             </section>
         </div>
+
+        <dialog>
+            <form onsubmit="app.onSub(event)">
+                <p>create a location</p>
+                <label for="name">enter name:</label>
+                <input type="text" id="name" class="name">
+                <label for="rate">enter rate:</label>
+                <input type="text" id="rate" class="rate">
+                <button type="submit">save</button>
+            </form>
+        </dialog>
+
     </main>
     <pre class="debug" hidden></pre>
     <div class="user-msg"></div>

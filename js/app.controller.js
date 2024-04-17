@@ -16,6 +16,7 @@ window.app = {
     onShareLoc,
     onSetSortBy,
     onSetFilterBy,
+    onSub,
 }
 
 function onInit() {
@@ -99,13 +100,24 @@ function onSearchAddress(ev) {
         })
 }
 
-function onAddLoc(geo) {
-    const locName = prompt('Loc name', geo.address || 'Just a place')
-    if (!locName) return
+
+
+function onSub(event) {
+
+    event.preventDefault()
+    const elDialog = document.querySelector('dialog')
+    const geo = JSON.parse(elDialog.dataset.geo)
+
+    const elName = document.querySelector('.name')
+    const elRate = document.querySelector('.rate')
+
+    // const locName = prompt('Loc name', geo.address || 'Just a place')
+    // if (!locName) return
+    const locName = elName.value
 
     const loc = {
         name: locName,
-        rate: +prompt(`Rate (1-5)`, '3'),
+        rate: elRate.value,
         geo
     }
     locService.save(loc)
@@ -118,6 +130,36 @@ function onAddLoc(geo) {
             console.error('OOPs:', err)
             flashMsg('Cannot add location')
         })
+        .finally(elDialog.close())
+
+}
+
+function onAddLoc(geo) {
+    console.log('hello')
+    const elDialog = document.querySelector('dialog')
+    elDialog.dataset.geo = JSON.stringify(geo)
+    elDialog.showModal()
+
+
+    // const locName = prompt('Loc name', geo.address || 'Just a place')
+    // if (!locName) return
+    // const locName = elName.value
+
+    // const loc = {
+    //     name: locName,
+    //     // rate: +prompt(`Rate (1-5)`, '3'),
+    //     geo
+    // }
+    // locService.save(loc)
+    //     .then((savedLoc) => {
+    //         flashMsg(`Added Location (id: ${savedLoc.id})`)
+    //         utilService.updateQueryParams({ locId: savedLoc.id })
+    //         loadAndRenderLocs()
+    //     })
+    //     .catch(err => {
+    //         console.error('OOPs:', err)
+    //         flashMsg('Cannot add location')
+    //     })
 }
 
 function loadAndRenderLocs() {
