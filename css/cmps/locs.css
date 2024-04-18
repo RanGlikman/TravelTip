@@ -4,6 +4,10 @@
     min-height: 100vh;
 }
 
+.locs-container * {
+   margin: 0.5em
+}
+
 .loc-list {
     list-style: none;
     padding: 0;
